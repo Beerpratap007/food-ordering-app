@@ -13,7 +13,7 @@ const RestorauntCard = (props) => {
   } = resData?.info;
 
   return (
-    <div className='res-card'>
+    <div>
       <img
         className="rounded-lg"
         alt="res-logo"
