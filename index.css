@@ -1,4 +1,8 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -71,7 +75,6 @@ img {
   margin: 0 auto;
 }
 
-/* Header css */
 .header-container {
   display: flex;
   align-items: center;
@@ -150,21 +153,12 @@ img {
   margin-top: 10px;
 }
 
-/* Simmer css */
 .simmer-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-/* .simmer-card {
-  width: 200px;
-  height: 400px;
-  background: #f1f1f1;;
-} */
-
-
-/* About css  && Restaurant menu css */
 .about-page, .res-menu {
   background: #fff;
   padding: 20px;
@@ -187,11 +181,10 @@ img {
   max-width: 200px;
 }
 
-/* Footer css */
 .footer-sec {
   color: #fff;
   padding: 20px 0;
   margin-top: 20px;
   text-align: center;
   border-top: 1px solid;
-}
+} */

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+//Created cusrome hook
 function useOnlineStatus() {
   const [onlineStatus, setOnlineStatus] = useState(true);
 

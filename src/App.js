@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,6 +10,7 @@ import Error from './components/Error';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import '../index.css';
 import RestaurantMenu from './components/RestaurantMenu';
+import UserContext from './utils/UserContext';
 
 //Chunking 
 //Code Splitting 
@@ -20,11 +21,30 @@ import RestaurantMenu from './components/RestaurantMenu';
 const Grocery = lazy(() => import('./components/Grocery'));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+  const { logedInUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const data = {
+      name: 'Beer'
+    }
+    setUserName(data.name);
+  }, []);
+
+  console.log('11');//step1 - will be executed during the initial render.
+  React.useEffect(() => {
+    console.log('12');//step3 - will be registered to run after the initial render, but since it has an empty dependency array ([]), it will run only once after the component is mounted.
+  }, []);
+  console.log('123');//step2
+
   return(
-    <div className='app container'>
-      <Header />
-      <Outlet />
-      <Footer />
+    <div className='app container m-auto'>
+      {/* overriding the value={{logedInUser: userName, setUserName} */}
+      <UserContext.Provider value={{logedInUser: userName, setUserName}}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </div>
   )
 }

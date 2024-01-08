@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {MENU_API } from '../utils/constants';
 
+//Created cusrome hook
 const useRestaurantMenu = (resId) => {
   const [resInfo, setResInfo] = useState(null);
 
