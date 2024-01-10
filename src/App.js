@@ -5,12 +5,15 @@ import Footer from './components/Footer';
 import Body from './components/Body';
 import About from './components/About';
 import Contact from './components/Contact';
+import Cart from './components/Cart';
 // import Grocery from './components/Grocery';
 import Error from './components/Error';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import '../index.css';
 import RestaurantMenu from './components/RestaurantMenu';
 import UserContext from './utils/UserContext';
+import { Provider } from 'react-redux';
+import appStore from './utils/appStore';
 
 //Chunking 
 //Code Splitting 
@@ -35,16 +38,19 @@ const AppLayout = () => {
   React.useEffect(() => {
     console.log('12');//step3 - will be registered to run after the initial render, but since it has an empty dependency array ([]), it will run only once after the component is mounted.
   }, []);
-  console.log('123');//step2
+  console.log('123');//step2 - will be executed during the initial render
 
   return(
     <div className='app container m-auto'>
-      {/* overriding the value={{logedInUser: userName, setUserName} */}
-      <UserContext.Provider value={{logedInUser: userName, setUserName}}>
-        <Header />
-        <Outlet />
-        <Footer />
-      </UserContext.Provider>
+      {/* It's our appStore using redux */}
+      <Provider store={appStore}>
+        {/* overriding the value={{logedInUser: userName, setUserName} */}
+        <UserContext.Provider value={{logedInUser: userName, setUserName}}>
+          <Header />
+          <Outlet />
+          <Footer />
+        </UserContext.Provider>
+      </Provider>
     </div>
   )
 }
@@ -63,6 +69,9 @@ const appRouter = createBrowserRouter([
       }, {
         path: '/contact',
         element: <Contact />
+      }, {
+        path: '/cart',
+        element: <Cart />
       }, {
         path: '/restaurants/:resId',
         element: <RestaurantMenu />
